@@ -1,5 +1,5 @@
-from src.input.text_interpreter import interpret_text_file
-from src.input.csv_interpreter import interpret_csv_file
+from src.input_reading.text_interpreter import interpret_text_file
+from src.input_reading.csv_interpreter import interpret_csv_file
 import src.data.graph as graph_code
 
 # Predefined
