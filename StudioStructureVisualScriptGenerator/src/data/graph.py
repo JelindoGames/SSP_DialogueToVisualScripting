@@ -58,22 +58,8 @@ class Graph:
 
     def get_unit_connections_json(self):
         json = ""
-        for i in range(1, len(self.nodes)):
-            json += self.get_unit_connection_json(self.nodes[i - 1], self.nodes[i]) + ","
+        for node in self.nodes:
+            for out_port in node.get_filled_out_ports():
+                json += out_port.get_json_representation() + ","
         json = json[:-1]
         return json
-
-    def get_unit_connection_json(self, first: Node, second: Node):
-        json_dict = {
-            "sourceUnit": {
-                "$ref": str(first.node_id)
-            },
-            "sourceKey": "Output",
-            "destinationUnit": {
-                "$ref": str(second.node_id)
-            },
-            "destinationKey": "Input",
-            "guid": str(uuid.uuid4()),
-            "$type": "Unity.VisualScripting.ControlConnection"
-        }
-        return json.dumps(json_dict)
