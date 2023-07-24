@@ -53,6 +53,8 @@ def get_node_from_cells(row, node_id, speaker_idx, content_idx):
         character = Character.string_to_character.get(row[speaker_idx])
         if character is None:
             return None
+        if character == Character.MC:
+            return NarrationText(row[content_idx], node_id)
         return CharacterText(character, row[content_idx], node_id)
 
 

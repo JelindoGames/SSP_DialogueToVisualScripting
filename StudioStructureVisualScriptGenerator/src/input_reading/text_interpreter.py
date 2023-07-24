@@ -21,7 +21,9 @@ def interpret_line(nodes, line, node_id):
         narration_text = NarrationText(line, node_id)
         nodes.append(narration_text)
     elif len("".join(line.split())) > 0:  # The line has non-whitespace content
-        nodes.append(get_character_text_node(line, node_id))
+        node = get_character_text_node(line, node_id)
+        if node is not None:
+            nodes.append(node)
 
 
 def get_character_text_node(line, node_id):
@@ -30,7 +32,11 @@ def get_character_text_node(line, node_id):
     colon_first = colon_pos < paren_pos or paren_pos == -1
     char_str = line[:colon_pos] if colon_first else line[:paren_pos]
     char_str = "".join(char_str.split())  # Get rid of whitespace
-    character = Character.string_to_character[char_str]
+    character = Character.string_to_character.get(char_str)
+    if character is None:
+        return None
+    if character == Character.MC:
+        return NarrationText(line[colon_pos + 2:], node_id)
     return CharacterText(character, line[colon_pos + 2:], node_id)  # 2 to pass both colon and space
 
 
