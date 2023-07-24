@@ -15,7 +15,6 @@ class NarrationText(Node):
         self.in_port = InPort(self, "Input")
 
     def convert_to_json(self, requested_pos: Position2D) -> str:
-        # Create JSON
         data = {
             "narrationTextExecutable":
                 {
