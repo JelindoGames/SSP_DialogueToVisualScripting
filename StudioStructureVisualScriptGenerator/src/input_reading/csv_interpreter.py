@@ -3,10 +3,12 @@ from src.data.nodes.character_text import CharacterText
 from src.data.nodes.prompt import Prompt
 from src.data.character import Character
 import pandas as pd
+import numpy as np
 
 
 def interpret_csv_file(filepath: str):
     csv_data = pd.read_csv(filepath)
+    csv_data = csv_data.replace('', np.nan)
     nodes = []
     nodes_branched = []  # Same as nodes list but in a branched form
     node_id = 0
@@ -44,6 +46,8 @@ def interpret_csv_file(filepath: str):
 
 
 def get_node_from_cells(row, node_id, speaker_idx, content_idx):
+    if pd.isna(row[speaker_idx]) or pd.isna(row[content_idx]):
+        return None
     row[speaker_idx] = "".join(row[speaker_idx].split())  # Remove whitespace
     row[speaker_idx] = row[speaker_idx].replace(":", "")  # Remove colon
     # Interpret Cells
