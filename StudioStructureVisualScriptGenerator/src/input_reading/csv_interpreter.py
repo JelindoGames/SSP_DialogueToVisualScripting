@@ -2,6 +2,7 @@ from src.data.nodes.narration_text import NarrationText
 from src.data.nodes.character_text import CharacterText
 from src.data.nodes.prompt import Prompt
 from src.data.character import Character
+import src.data.character as CharacterUtils
 import pandas as pd
 import numpy as np
 
@@ -54,7 +55,7 @@ def get_node_from_cells(row, node_id, speaker_idx, content_idx):
     if row[speaker_idx] == "Narration":
         return NarrationText(row[content_idx], node_id)
     else:
-        character = Character.string_to_character.get(row[speaker_idx])
+        character = CharacterUtils.get_character_from_string(row[speaker_idx])
         if character is None:
             return None
         if character == Character.MC:

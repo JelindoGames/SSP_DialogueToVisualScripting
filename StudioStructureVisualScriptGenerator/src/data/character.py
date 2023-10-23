@@ -38,35 +38,58 @@ class Character:
 
     string_to_character = {
         "MCW": AKARI,
-        "Akari": AKARI,
+        "AKARI": AKARI,
         "A": AMELIA,
         "AMELIA": AMELIA,
         "B": BRITNEY,
         "BRITNEY": BRITNEY,
         "C1": C1,
+        "FELIX": C1,
         "C": CHLOE,
-        "Chloe": CHLOE,
+        "CHLOE": CHLOE,
         "D": DANIEL,
-        "Daniel": DANIEL,
+        "DANIEL": DANIEL,
         "MOM": DANIEL,
         "DAD": DANIEL,
         "HT": EMI,
         "EMI": EMI,
         "EGT": ETHAN,
-        "Ethan": ETHAN,
+        "ETHAN": ETHAN,
         "MC": MC,
+        "NEKU": MC,
         "SCP": SCP,
+        "ALEXIS": SCP,
         "AO": STEVE,
-        "Arcade Owner": STEVE,
-        "Steve": STEVE,
+        "ARCADE OWNER": STEVE,
+        "STEVE": STEVE,
         "CMG": THEODORE,
-        "Theodore": THEODORE,
+        "THEODORE": THEODORE,
         "J": VIOLA,
         "SJ": VIOLA,
-        "Journalist": VIOLA,
-        "Viola": VIOLA,
+        "JOURNALIST": VIOLA,
+        "VIOLA": VIOLA,
         "C3": YONAKA,
-        "Amber": YONAKA,
+        "AMBER": YONAKA,
         "YONAKA": YONAKA
     }
 
+    character_to_real_name = {
+        AKARI: "Akari",
+        AMELIA: "Amelia",
+        BRITNEY: "Britney",
+        C1: "Felix",
+        CHLOE: "Chloe",
+        DANIEL: "Daniel",
+        EMI: "Emi",
+        ETHAN: "Ethan",
+        MC: "Neku",
+        SCP: "Alexis",
+        STEVE: "Steve",
+        THEODORE: "Theodore",
+        VIOLA: "Viola",
+        YONAKA: "Yonaka"
+    }
+
+
+def get_character_from_string(text: str):
+    return Character.string_to_character.get(text.upper())

@@ -1,5 +1,6 @@
 from src.data.nodes.narration_text import NarrationText
 from src.data.nodes.character_text import CharacterText
+import src.data.character as CharacterUtils
 from src.data.character import Character
 
 
@@ -32,7 +33,7 @@ def get_character_text_node(line, node_id):
     colon_first = colon_pos < paren_pos or paren_pos == -1
     char_str = line[:colon_pos] if colon_first else line[:paren_pos]
     char_str = "".join(char_str.split())  # Get rid of whitespace
-    character = Character.string_to_character.get(char_str)
+    character = CharacterUtils.get_character_from_string(char_str)
     if character is None:
         return None
     if character == Character.MC:

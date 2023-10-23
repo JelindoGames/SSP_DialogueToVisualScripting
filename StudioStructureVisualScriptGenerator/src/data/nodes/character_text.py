@@ -12,7 +12,7 @@ class CharacterText(Node):
     def __init__(self, character: Character, text: str, node_id: int):
         super().__init__(node_id)
         self.character = character
-        self.text = self.clean_problem_characters(text)
+        self.text = self.fix_character_names(self.clean_problem_characters(text))
         self.out_port = OutPort(self, "Output")
         self.in_port = InPort(self, "Input")
 

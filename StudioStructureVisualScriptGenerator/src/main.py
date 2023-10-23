@@ -3,8 +3,8 @@ from src.input_reading.csv_interpreter import interpret_csv_file
 import src.data.graph as graph_code
 
 # Predefined
-input_file = "../input/week 3/Week 3 - Day 6 - Section 3.txt"
-graph_name = "Week 3 - Day 6 - Section 3"
+input_file = "../input/week 4/Week 4 - Day 2 - Section 2.txt"
+graph_name = "Week 4 - Day 2 - Section 2"
 
 if __name__ == "__main__":
     input_is_csv = input_file.endswith(".csv")
