@@ -14,7 +14,8 @@ def interpret_csv_file(filepath: str):
     nodes_branched = []  # Same as nodes list but in a branched form
     node_id = 0
     in_branch = False
-    for _, row in csv_data.iterrows():
+    for idx, row in csv_data.iterrows():
+        print(f"CSV INTERPRETER: Handling Row {idx}")
         node_id += 1  # This may skip a few id numbers but that's okay
         if not in_branch and not pd.isnull(row[2]):
             in_branch = True
@@ -49,17 +50,21 @@ def interpret_csv_file(filepath: str):
 def get_node_from_cells(row, node_id, speaker_idx, content_idx):
     if pd.isna(row[speaker_idx]) or pd.isna(row[content_idx]):
         return None
-    row[speaker_idx] = "".join(row[speaker_idx].split())  # Remove whitespace
-    row[speaker_idx] = row[speaker_idx].replace(":", "")  # Remove colon
+    speaker_str = row[speaker_idx]
+    stripped_speaker_str = "".join(speaker_str.split()).replace(":", "") # Remove whitespace and colon
     # Interpret Cells
-    if row[speaker_idx] == "Narration":
+    if stripped_speaker_str == "Narration":
+        print(f"CSV INTERPRETER: Created Narration Node (speaker string: '{speaker_str}')")
         return NarrationText(row[content_idx], node_id)
     else:
-        character = CharacterUtils.get_character_from_string(row[speaker_idx])
+        character = CharacterUtils.get_character_from_string(speaker_str)  # Don't use stripped version, spaces matter
         if character is None:
+            print(f"WARNING -- CSV INTERPRETER: Failed to find speaker character from string '{speaker_str}', SKIP")
             return None
         if character == Character.MC:
+            print(f"CSV INTERPRETER: Created Narration Node (speaker string: '{speaker_str}')")
             return NarrationText(row[content_idx], node_id)
+        print(f"CSV INTERPRETER: Created Character Dialogue Node (speaker string: '{speaker_str}')")
         return CharacterText(character, row[content_idx], node_id)
 
 

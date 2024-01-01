@@ -39,38 +39,52 @@ class Character:
     string_to_character = {
         "MCW": AKARI,
         "AKARI": AKARI,
+        "AKARI HAYASHI": AKARI,
         "A": AMELIA,
         "AMELIA": AMELIA,
+        "AMELIA LEE": AMELIA,
         "B": BRITNEY,
         "BRITNEY": BRITNEY,
+        "BRITNEY SUMMERS": BRITNEY,
         "C1": C1,
         "FELIX": C1,
+        "FELIX BEAUMONT": C1,
         "C": CHLOE,
         "CHLOE": CHLOE,
+        "CHLOE SUZUKI": CHLOE,
         "D": DANIEL,
         "DANIEL": DANIEL,
+        "DANIEL HARRINGTON": DANIEL,
         "MOM": DANIEL,
         "DAD": DANIEL,
         "HT": EMI,
         "EMI": EMI,
+        "EMI SATO": EMI,
         "EGT": ETHAN,
         "ETHAN": ETHAN,
+        "ETHAN REED": ETHAN,
         "MC": MC,
         "NEKU": MC,
+        "NEKU IWAKURA": MC,
         "SCP": SCP,
         "ALEXIS": SCP,
+        "ALEXIS AIZAKI": SCP,
         "AO": STEVE,
         "ARCADE OWNER": STEVE,
         "STEVE": STEVE,
         "CMG": THEODORE,
         "THEODORE": THEODORE,
+        "THEODORE WILBURN": THEODORE,
         "J": VIOLA,
         "SJ": VIOLA,
         "JOURNALIST": VIOLA,
         "VIOLA": VIOLA,
+        "VIOLA VOLKOV": VIOLA,
         "C3": YONAKA,
         "AMBER": YONAKA,
-        "YONAKA": YONAKA
+        "YONAKA": YONAKA,
+        "AMBER KAGE": YONAKA,
+        "YONAKA KAGE": YONAKA
     }
 
     character_to_real_name = {
@@ -92,4 +106,7 @@ class Character:
 
 
 def get_character_from_string(text: str):
-    return Character.string_to_character.get(text.upper())
+    text_stripped = "".join([char for char in text if char.isalnum() or char.isspace()])
+    text_stripped = text_stripped.strip()
+    character = Character.string_to_character.get(text_stripped.upper())
+    return character
