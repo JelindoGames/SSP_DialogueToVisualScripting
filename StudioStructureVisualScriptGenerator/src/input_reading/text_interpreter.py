@@ -7,7 +7,7 @@ from src.data.character import Character
 def interpret_text_file(filepath: str):
     nodes = []
     line_idx = 1
-    with open(filepath, 'r') as f:
+    with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
             print(f"TXT INTERPRETER: Reading line {line_idx}")
