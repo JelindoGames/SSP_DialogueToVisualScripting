@@ -16,8 +16,11 @@ class Character:
     YONAKA = 11
     C1 = 12
     SCP = 13
+    GUY = 14
+    GUY_2 = 15
+    WOMAN = 16
 
-    max_character_value = 13  # For iteration
+    max_character_value = 16  # For iteration
 
     character_to_guid = {
         AKARI: "1ad1737fe07774751b25d03892f4ff2b",
@@ -33,7 +36,10 @@ class Character:
         STEVE: "17c04beccfdb94100a04a1a3d5b30db3",
         THEODORE: "adf95db3a761141ccaa783ddfd78e551",
         VIOLA: "708d61c8311a341fb8b15c437008c6c0",
-        YONAKA: "4a9dfb61d3e3640fcb35b08aee8da1e7"
+        YONAKA: "4a9dfb61d3e3640fcb35b08aee8da1e7",
+        GUY: "38a64fa32dd977f48a4ee91f44f6a749",
+        GUY_2: "7197c80766b1e5f4ea316f0e04720a59",
+        WOMAN: "37eb7b90c5402a749a62a43d18ea3eb8"
     }
 
     string_to_character = {
@@ -84,7 +90,10 @@ class Character:
         "AMBER": YONAKA,
         "YONAKA": YONAKA,
         "AMBER KAGE": YONAKA,
-        "YONAKA KAGE": YONAKA
+        "YONAKA KAGE": YONAKA,
+        "GUY": GUY,
+        "GUY 2": GUY_2,
+        "WOMAN": WOMAN
     }
 
     character_to_real_name = {
@@ -101,7 +110,10 @@ class Character:
         STEVE: "Steve",
         THEODORE: "Theodore",
         VIOLA: "Viola",
-        YONAKA: "Yonaka"
+        YONAKA: "Yonaka",
+        GUY: "Guy",
+        GUY_2: "Guy 2",
+        WOMAN: "Woman"
     }
 
 

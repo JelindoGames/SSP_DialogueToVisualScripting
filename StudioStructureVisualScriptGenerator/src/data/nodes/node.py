@@ -48,13 +48,13 @@ class Node(abc.ABC):
             # For rejoining at end
             prefix = ""
             for char in word:
-                if not char.isalpha():
+                if not char.isalnum():
                     prefix += char
                 else:
                     break
             suffix = ""
             for i in range(len(word) - 1, -1, -1):
-                if not word[i].isalpha():
+                if not word[i].isalnum():
                     suffix += word[i]
                 else:
                     break
