@@ -8,9 +8,10 @@ import uuid
 
 class NarrationText(Node):
 
-    def __init__(self, text: str, node_id: int):
+    def __init__(self, text: str, node_id: int, char_pov=None):
         super().__init__(node_id)
         self.text = self.fix_character_names(self.clean_problem_characters(text))
+        self.char_pov = char_pov
         self.out_port = OutPort(self, "Output")
         self.in_port = InPort(self, "Input")
 
@@ -19,7 +20,8 @@ class NarrationText(Node):
             "narrationTextExecutable":
                 {
                     "text": self.text,
-                    "voiceClip": None
+                    "character": self.char_pov,
+                    "voiceClip": None,
                 },
             "defaultValues": {},
             "position":

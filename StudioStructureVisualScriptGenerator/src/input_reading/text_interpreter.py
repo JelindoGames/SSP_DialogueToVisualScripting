@@ -4,32 +4,32 @@ import src.data.character as CharacterUtils
 from src.data.character import Character
 
 
-def interpret_text_file(filepath: str):
+def interpret_text_file(filepath: str, diff_char_pov: bool, diff_char_name: list[str]):
     nodes = []
     line_idx = 1
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
             print(f"TXT INTERPRETER: Reading line {line_idx}")
-            interpret_line(nodes, line, line_idx)
+            interpret_line(nodes, line, line_idx, diff_char_pov, diff_char_name)
             line_idx += 1  # Technically this means an empty line will skip an ID, this should be fine
     forge_node_connections(nodes)
     return nodes
 
 
-def interpret_line(nodes, line, node_id):
+def interpret_line(nodes, line, node_id, diff_char_pov: bool, diff_char_name: list[str]):
     line = line.strip()
     if line.startswith('['):
         print("TXT INTERPRETER: Making Narration Node (line is in square brackets)")
         narration_text = NarrationText(line, node_id)
         nodes.append(narration_text)
     elif len("".join(line.split())) > 0:  # The line has non-whitespace content
-        node = get_character_text_node(line, node_id)
+        node = get_character_text_node(line, node_id, diff_char_pov, diff_char_name)
         if node is not None:
             nodes.append(node)
 
 
-def get_character_text_node(line, node_id):
+def get_character_text_node(line, node_id, diff_char_pov: bool, diff_char_name: list[str]):
     colon_pos = line.find(':')
     paren_pos = line.find('(')
     colon_first = colon_pos < paren_pos or paren_pos == -1
@@ -38,6 +38,9 @@ def get_character_text_node(line, node_id):
     if character is None:
         print(f"WARNING -- TXT INTERPRETER: Failed to get character from string '{char_str}', SKIP")
         return None
+    if diff_char_pov and char_str in diff_char_name:
+        print(f"TXT INTERPRETER: Making Narration Node for diff Character POV (character string '{char_str}')")
+        return NarrationText(line[colon_pos + 2:], node_id, character)
     if character == Character.MC:
         print(f"TXT INTERPRETER: Making Narration Node (character string '{char_str}')")
         return NarrationText(line[colon_pos + 2:], node_id)

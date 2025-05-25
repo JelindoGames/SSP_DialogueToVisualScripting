@@ -3,27 +3,29 @@ from enum import Enum
 
 class Character:
     AKARI = 0
-    AMELIA = 1
-    BRITNEY = 2
-    CHLOE = 3
-    DANIEL = 4
-    EMI = 5
-    ETHAN = 6
-    MC = 7
-    STEVE = 8
-    THEODORE = 9
-    VIOLA = 10
-    YONAKA = 11
-    C1 = 12
-    SCP = 13
-    GUY = 14
-    GUY_2 = 15
-    WOMAN = 16
+    AMBER = 1
+    AMELIA = 2
+    BRITNEY = 3
+    CHLOE = 4
+    DANIEL = 5
+    EMI = 6
+    ETHAN = 7
+    MC = 8
+    STEVE = 9
+    THEODORE = 10
+    VIOLA = 11
+    YONAKA = 12
+    C1 = 13
+    SCP = 14
+    GUY = 15
+    GUY_2 = 16
+    WOMAN = 17
 
-    max_character_value = 16  # For iteration
+    max_character_value = 17  # For iteration
 
     character_to_guid = {
         AKARI: "1ad1737fe07774751b25d03892f4ff2b",
+        AMBER: "169b6a2d24dd5fd48b3225f9f4a1e11f",
         AMELIA: "89fac5143b3d348b9a445ef619bc3be2",
         BRITNEY: "5ca89f0313ad44ae5b2a9707d0702dff",
         C1: "c2ae1484ae4de45f099c5b3d35a7a065",
@@ -87,9 +89,9 @@ class Character:
         "VIOLA": VIOLA,
         "VIOLA VOLKOV": VIOLA,
         "C3": YONAKA,
-        "AMBER": YONAKA,
+        "AMBER": AMBER,
         "YONAKA": YONAKA,
-        "AMBER KAGE": YONAKA,
+        "AMBER KAGE": AMBER,
         "YONAKA KAGE": YONAKA,
         "GUY": GUY,
         "GUY 2": GUY_2,
@@ -98,6 +100,7 @@ class Character:
 
     character_to_real_name = {
         AKARI: "Akari",
+        AMBER: "Amber",
         AMELIA: "Amelia",
         BRITNEY: "Britney",
         C1: "Felix",

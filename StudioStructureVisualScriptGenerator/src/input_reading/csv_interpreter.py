@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 
-def interpret_csv_file(filepath: str):
+def interpret_csv_file(filepath: str, diff_char_pov: bool, diff_char_name: list[str]):
     csv_data = pd.read_csv(filepath)
     csv_data = csv_data.replace('', np.nan)
     nodes = []
@@ -28,17 +28,17 @@ def interpret_csv_file(filepath: str):
             in_branch = False
             continue
         if in_branch:
-            node1 = get_node_from_cells(row, node_id, 0, 1)
+            node1 = get_node_from_cells(row, node_id, 0, 1, diff_char_pov, diff_char_name)
             if node1 is not None:
                 nodes.append(node1)
                 nodes_branched[-1][0].append(node1)
             node_id += 1
-            node2 = get_node_from_cells(row, node_id, 2, 3)
+            node2 = get_node_from_cells(row, node_id, 2, 3, diff_char_pov, diff_char_name)
             if node2 is not None:
                 nodes.append(node2)
                 nodes_branched[-1][1].append(node2)
         else:
-            node = get_node_from_cells(row, node_id, 0, 1)
+            node = get_node_from_cells(row, node_id, 0, 1, diff_char_pov, diff_char_name)
             if node is not None:
                 nodes.append(node)
                 nodes_branched.append(node)
@@ -47,7 +47,7 @@ def interpret_csv_file(filepath: str):
     return nodes
 
 
-def get_node_from_cells(row, node_id, speaker_idx, content_idx):
+def get_node_from_cells(row, node_id, speaker_idx, content_idx, diff_char_pov: bool, diff_char_name: list[str]):
     if pd.isna(row[speaker_idx]) or pd.isna(row[content_idx]):
         return None
     speaker_str = row[speaker_idx]
@@ -61,6 +61,9 @@ def get_node_from_cells(row, node_id, speaker_idx, content_idx):
         if character is None:
             print(f"WARNING -- CSV INTERPRETER: Failed to find speaker character from string '{speaker_str}', SKIP")
             return None
+        if diff_char_pov and speaker_str in diff_char_name:
+            print(f"CSV INTERPRETER: Making Narration Node for diff Character POV (speaker string '{speaker_str}')")
+            return NarrationText(row[content_idx], node_id, character)
         if character == Character.MC:
             print(f"CSV INTERPRETER: Created Narration Node (speaker string: '{speaker_str}')")
             return NarrationText(row[content_idx], node_id)
