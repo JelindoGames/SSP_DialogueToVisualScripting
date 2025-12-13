@@ -32,7 +32,7 @@ class Character:
         EMI: "652110768cd0a4c7a9aeb6c6e703d589",
         ETHAN: "b0eac8812412b444988726f0482dca75",
         MC: "617588a0ea5a34d729372141c22656a6",
-        SCP: "8dbf819b407dc482eab61ef88b6db806",
+        SCP: "442d03ea230fd4909a22b31126b8a664",
         STEVE: "17c04beccfdb94100a04a1a3d5b30db3",
         THEODORE: "adf95db3a761141ccaa783ddfd78e551",
         VIOLA: "708d61c8311a341fb8b15c437008c6c0",
